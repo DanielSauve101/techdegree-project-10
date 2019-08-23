@@ -6,14 +6,16 @@ import json
 import app
 import models
 
+#https://github.com/pybites/blog_code/blob/master/flaskapi/test_app.py
+#Thank you Pybites for the information on testing an API
+
 BASE_URL = 'http://127.0.0.1:5000/api/v1/todos'
 BAD_URL = '{}/99'.format(BASE_URL)
 GOOD_URL = '{}/1'.format(BASE_URL)
 
-
 test_db = SqliteDatabase(':memory:')
 MODELS = [models.Todo]
-    
+
 class TestApi(unittest.TestCase):
     def setUp(self):
         test_db.bind(MODELS)
@@ -48,6 +50,7 @@ class TestApi(unittest.TestCase):
                                  data=json.dumps(todo),
                                  content_type='application/json')
         self.assertEqual(response.status_code, 400)
+        
         # valid field provided
         todo = {"name": "wash floors"}
         response = self.app.post(BASE_URL,
