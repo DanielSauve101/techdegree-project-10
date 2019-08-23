@@ -48,7 +48,9 @@ class TodoList(Resource):
     def post(self):
         args = self.reqparse.parse_args()
         todo = models.Todo.create(**args)
-        return (todo, 201, {'Location': url_for('resources.todos.todo', id=todo.id)})
+        return (todo, 201, {
+            'Location': url_for('resources.todos.todo', id=todo.id)
+            })
 
 
 class Todo(Resource):
@@ -78,7 +80,8 @@ class Todo(Resource):
         args = self.reqparse.parse_args()
         query = models.Todo.update(**args).where(models.Todo.id==id)
         query.execute()
-        return (models.Todo.get(models.Todo.id==id), 200, {'Location': url_for('resources.todos.todo', id=id)})
+        return (models.Todo.get(models.Todo.id==id), 200, 
+               {'Location': url_for('resources.todos.todo', id=id)})
 
     def delete(self, id):
         query = models.Todo.delete().where(models.Todo.id==id)

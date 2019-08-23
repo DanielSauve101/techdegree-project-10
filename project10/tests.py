@@ -15,7 +15,6 @@ test_db = SqliteDatabase(':memory:')
 MODELS = [models.Todo]
     
 class TestApi(unittest.TestCase):
-
     def setUp(self):
         test_db.bind(MODELS)
         test_db.connect(reuse_if_open=True)
@@ -72,6 +71,6 @@ class TestApi(unittest.TestCase):
         response = self.app.delete(GOOD_URL)
         self.assertEqual(response.status_code, 204)
 
-    
+
 if __name__ == "__main__":
     unittest.main()
