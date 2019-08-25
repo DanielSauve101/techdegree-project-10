@@ -31,13 +31,13 @@ class TestApi(unittest.TestCase):
         response = self.app.get(BASE_URL)
         data = json.loads(response.get_data())
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(data['todos']), 1)
+        self.assertEqual(len(data), 1)
 
     def test_get_one_todo(self):
         response = self.app.get(BASE_URL)
         data = json.loads(response.get_data())
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(data['todos'][0]['name'], 'finish project')
+        self.assertEqual(data[0]['name'], 'finish project')
 
     def test_todo_does_not_exist(self):
         response = self.app.get(BAD_URL)

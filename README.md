@@ -1,2 +1,2 @@
 # techdegree-project-10
-Created API for for Todo list application.
+Created API for a Todo list application.
